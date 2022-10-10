@@ -6,10 +6,18 @@
 <!--  cái bảng -->
   <a-table :columns="columns" :data-source="data">
     <template #bodyCell="{ column, text }">
-      <template v-if="column.dataIndex === 'name'">
-        <a>{{ text }}</a>
+      <template v-if="column.dataIndex === 'operation'">
+        <a-button type="primary">Edit</a-button>
+        <a-popconfirm
+            v-if="data.length"
+            title="Sure to delete?"
+        >
+          <a-button type="danger" style="margin-left: 5px">Delete</a-button>
+        </a-popconfirm>
+
       </template>
     </template>
+
   </a-table>
 </template>
 
@@ -46,6 +54,8 @@ const columns = [
   },
   {
     title: 'thao tác',
+    dataIndex: 'operation',
+
   }
 ];
 
