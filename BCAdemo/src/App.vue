@@ -1,8 +1,9 @@
 <script setup lang="ts">
 
-import DUANCU from "./components/duAnCu.vue";
 </script>
 
 <template>
-  <DUANCU />
+
+<router-view></router-view>
+
 </template>

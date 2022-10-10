@@ -1,4 +1,9 @@
 <template>
+  <div>
+    <a-button style="float: right;background-color: royalblue;margin-right: 200px"><router-link to="/created">Thêm</router-link></a-button>
+  </div>
+
+<!--  cái bảng -->
   <a-table :columns="columns" :data-source="data">
     <template #bodyCell="{ column, text }">
       <template v-if="column.dataIndex === 'name'">
@@ -7,9 +12,11 @@
     </template>
   </a-table>
 </template>
+
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import {defineComponent, onMounted, ref} from 'vue';
 import axios from 'axios';
+import giaoDien from './fromThemMoi.vue';
 
 const columns = [
   {
@@ -40,22 +47,20 @@ const columns = [
 ];
 
 export default defineComponent({
+  components: {
+    giaoDien,
+  },
   data() {
-    return {
-      data: [
-      {
-        key: '1',
-        soTaiKhoan: 'Mike',
-        tenTaiKhoan: 32,
-        ngayThangNamSinh: '10 Downing Street',
+
+      return {
+      data: [],
+      nguoidung: {
+        soTaiKhoan: '',
+        tenTaiKhoan: '',
+        ngayThangNamSinh: '',
+        email: '',
+        soTienTrongTaiKhoan: ''
       },
-      {
-        key: '2',
-        soTaiKhoan: 'Mike',
-        tenTaiKhoan: 32,
-        ngayThangNamSinh: '10 Downing Street',
-      },
-    ],
       columns,
     };
   },
@@ -65,7 +70,7 @@ export default defineComponent({
       await axios.get('http://localhost:8088/nguoidung').then((response) => {
         // console.log(response.data.data);
         this.data = response.data.data;
-        console.log('dataValue:', this.data);
+        console.log(this.data);
         return;
       });
     },
