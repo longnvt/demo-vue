@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-button style="float: right;background-color: royalblue;margin-right: 200px"><router-link to="/created">Thêm</router-link></a-button>
+    <a-button style="float: right;background-color: royalblue;margin-right: 92px"><router-link to="/created">Thêm</router-link></a-button>
   </div>
 
 <!--  cái bảng -->
@@ -43,6 +43,9 @@ const columns = [
     title: 'Số tiền trong tài khoản',
     dataIndex: 'soTienTrongTaiKhoan',
     key: 'soTienTrongTaiKhoan',
+  },
+  {
+    title: 'thao tác',
   }
 ];
 

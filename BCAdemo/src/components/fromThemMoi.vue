@@ -9,11 +9,11 @@
     <a-form-item :name="['nguoidung', 'soTaiKhoan']" label="Số Tài Khoản" :rules="[{ required: true }]">
       <a-input v-model:value="formState.nguoidung.soTaiKhoan" />
     </a-form-item>
-    <a-form-item :name="['nguoidung', 'tenTaiKhoan']" label="Tên Người Dùng" :rules="[{ type: 'email' }]">
+    <a-form-item :name="['nguoidung', 'tenTaiKhoan']" label="Tên Người Dùng" :rules="[{  }]">
       <a-input v-model:value="formState.nguoidung.tenTaiKhoan" />
     </a-form-item>
-    <a-form-item :name="['nguoidung', 'ngayThangNamSinh']" label="Ngày Tháng Năm Sinh" :rules="[{ type : 'ngayThangNamSinh' }]">
-      <a-input v-model:value="formState.nguoidung.tenTaiKhoan" />
+    <a-form-item :name="['nguoidung', 'ngayThangNamSinh']" label="Ngày Tháng Năm Sinh" :rules="[{ }]">
+      <a-input v-model:value="formState.nguoidung.ngayThangNamSinh" />
     </a-form-item>
     <a-form-item :name="['nguoidung', 'email']" label="email">
       <a-input v-model:value="formState.nguoidung.email" />
@@ -28,6 +28,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
+import axios from "axios";
 
 export default defineComponent({
   setup() {
@@ -56,15 +57,21 @@ export default defineComponent({
         soTienTrongTaiKhoan: '',
       },
     });
-    const onFinish = (values: any) => {
-      console.log('Success:', values);
+    const onFinish = () => {
+      axios.post('http://localhost:8088/nguoidung', formState.nguoidung)
+          .then(response => {
+            console.log("res:",response);
+          })
+          .catch(error => {
+            console.log(error);
+          });
     };
     return {
       formState,
       onFinish,
       layout,
       validateMessages,
-    };
+      }
   },
 });
 </script>
