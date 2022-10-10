@@ -8,7 +8,7 @@
   </a-table>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import axios from 'axios';
 
 const columns = [
@@ -39,10 +39,8 @@ const columns = [
   }
 ];
 
-
-
 export default defineComponent({
-  setup() {
+  data() {
     return {
       data: [
       {
@@ -67,7 +65,7 @@ export default defineComponent({
       await axios.get('http://localhost:8088/nguoidung').then((response) => {
         // console.log(response.data.data);
         this.data = response.data.data;
-        console.log(this.data);
+        console.log('dataValue:', this.data);
         return;
       });
     },
