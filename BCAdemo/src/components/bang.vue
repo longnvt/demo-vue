@@ -7,9 +7,9 @@
 
   <!--  cái bảng -->
   <a-table :columns="columns" :data-source="data">
-    <template #bodyCell="{ column, record}">
+    <template #bodyCell="{column, record}">
       <template v-if="column.dataIndex === 'operation'">
-        <a-button type="primary"><router-link to="/put">Edit</router-link></a-button>
+        <a-button @click="getDataColumn(record)" type="primary"><router-link to="/put"> Edit </router-link></a-button>
         <a-button @click="xoaTaiKhoan(record.soTaiKhoan)" type="danger" style="margin-left: 5px">Delete</a-button>
       </template>
     </template>
@@ -75,6 +75,8 @@ export default defineComponent({
   },
 
   methods: {
+    getDataColumn(value : any) {
+      console.log(value) },
      getTaiKhoan() {
       axios.get('http://localhost:8088/nguoidung').then((response) => {
         this.data = response.data.data;
